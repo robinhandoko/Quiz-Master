@@ -5,7 +5,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>ID</th>
       <th>Question</th>
       <th>Question Type</th>
       <th>Created At</th>
@@ -20,7 +19,6 @@
     <% end %>
     <% @questions.each do |question| %>
       <tr>
-        <td><%= link_to question.id, admin_question_path(question) %></td>
         <td><%= raw question.question %></td>
         <td><%= VALID_QUESTION_TYPE[question.question_type] %></td>
         <td><%=l question.created_at %></td>
