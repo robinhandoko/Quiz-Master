@@ -16,7 +16,7 @@ class QuizController < ApplicationController
       }
     else
       selected_answer = Answer.where(id: params[:selected_answer])
-      if selected_answer == question.corrent_answers
+      if selected_answer == question.correct_answers
         correct_answer = true
       end
 
