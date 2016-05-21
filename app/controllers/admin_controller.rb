@@ -9,7 +9,7 @@ class AdminController < ApplicationController
   def admin_authorization
     if current_user && !current_user.admin?
       flash[:error] = "You are not authorized to access this page"
-      root_path_redirection
+      redirect_to root_path
     end
   end
 end
