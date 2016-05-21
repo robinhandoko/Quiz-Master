@@ -1,0 +1,7 @@
+<%= paginate @questions, :window => 1 %>
+
+<div class="quiz-mode">
+  <% @questions.each do |question, index| %>
+    Q: <%= question.question %>
+  <% end %>
+</div>

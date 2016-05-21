@@ -61,3 +61,4 @@ gem 'simple_form'
 gem 'bootsy'
 gem 'numbers_and_words'
 gem 'kaminari'
+gem "cocoon"

@@ -31,7 +31,7 @@
               <li><%= link_to "Sign In", new_user_session_path  %></li>
               <li><%= link_to "Sign Up", new_user_registration_path %></li>
             <% else %>
-              <li><%= link_to "Take a Quiz", "#"  %></li>
+              <li><%= link_to "Take a Quiz", quiz_index_path  %></li>
               <% if current_user.admin? %>
                 <li><%= link_to "Manage Questions", admin_questions_path %></li>
                 <li><%= link_to "Log Out", destroy_user_session_path %></li>
