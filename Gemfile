@@ -44,6 +44,10 @@ group :development, :test do
 
   gem 'rspec-rails', '~> 3.4'
   gem "factory_girl_rails"
+  gem 'rspec-collection_matchers', '1.1.2'
+  gem 'rspec-its', '1.2.0'
+  gem 'simplecov', '0.9.2'
+  gem 'shoulda-matchers', '2.8.0', require: false
 end
 
 group :development do
