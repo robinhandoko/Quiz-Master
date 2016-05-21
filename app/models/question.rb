@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
   # has many
-  has_many :answers
+  has_many :answers, dependent: :destroy
 
   # validation
   validates :question_type,
