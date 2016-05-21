@@ -7,7 +7,7 @@
     <tr>
       <th>ID</th>
       <th>Question</th>
-      <th>Answer</th>
+      <th>Question Type</th>
       <th>Created At</th>
       <th>Action</th>
     </tr>
@@ -22,7 +22,7 @@
       <tr>
         <td><%= link_to question.id, admin_question_path(question) %></td>
         <td><%= raw question.question %></td>
-        <td><%= question.answer %></td>
+        <td><%= VALID_QUESTION_TYPE[question.question_type] %></td>
         <td><%=l question.created_at %></td>
         <td>
           <%= link_to admin_question_path(question), :class => 'btn btn-xs',

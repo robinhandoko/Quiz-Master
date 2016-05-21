@@ -1,0 +1,12 @@
+<div class="nested-fields">
+  <div class="field">
+    <%= f.input :answer, { html: {class: "nested-input"}} %>
+    <%= f.input :is_correct, label: "Thick if this is a correct answer" %>
+
+    <div class="links">
+      <%= link_to_remove_association f, class: "remove-assoc"  do %>
+        <%= glyph 'remove' %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -15,4 +15,6 @@
 //= require bootsy
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require cocoon
+//= require admin/questions
 //= require_tree .

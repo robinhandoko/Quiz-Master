@@ -3,10 +3,22 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong>Qquestion:</strong></dt>
+  <dt><strong>Question:</strong></dt>
   <dd><%= @question.question %></dd>
-  <dt><strong>Answer:</strong></dt>
-  <dd><%= @question.answer %></dd>
+  <dt><strong>Possible Answers:</strong></dt>
+  <div class="clear"></div>
+  <ul class="possible-answer-list">
+    <% @question.answers.each do |answer| %>
+      <li>
+        <%= answer.answer %>
+        <% if answer.is_correct %>
+          <%= glyph 'ok-sign' %>
+        <% else %>
+          <%= glyph 'remove-sign' %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </dl>
 
 <%= link_to "Back", admin_questions_path, :class => 'btn btn-default'  %>

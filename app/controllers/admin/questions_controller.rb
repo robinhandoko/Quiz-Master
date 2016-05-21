@@ -9,7 +9,8 @@ class Admin::QuestionsController < AdminController
   end
 
   def new
-    @question = Question.new
+    @question = Question.new(question_type: VALID_QUESTION_TYPE.keys.first)
+    @question.answers.build
   end
 
   def edit
@@ -47,6 +48,8 @@ class Admin::QuestionsController < AdminController
     end
 
     def question_params
-      params.require(:question).permit(:question, :answer)
+      params.require(:question).permit(:question, :question_type,
+        :answers_attributes => [:id, :answer, :is_correct, :_destroy]
+      )
     end
 end

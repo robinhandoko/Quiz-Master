@@ -1,7 +1,42 @@
 <%= simple_form_for [:admin, @question], :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :question, as: :bootsy, class: "bootsy-area" %>
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        The form contains <%= pluralize(@question.errors.count, "error") %>.
 
-  <%= f.input :answer %>
-  <%= f.button :submit, :class => 'btn-primary' %>
-  <%= link_to "Cancel", admin_questions_path, :class => 'btn btn-default' %>
+        <ul>
+         <% @question.errors.full_messages.each do |msg| %>
+          <li>* <%= msg %></li>
+         <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <%= f.input :question, as: :bootsy, class: "bootsy-area" %>
+  <%= f.input :question_type, collection: VALID_QUESTION_TYPE.map{|k, v| [v, k]},
+    include_blank: false,
+    :input_html => { :class => "question-type"}
+  %>
+
+  <div class="answer-section">
+    <h3> Answers </h3>
+
+    <div id="answer-form">
+      <%= f.simple_fields_for :answers do |answer| %>
+        <%= render 'answer_fields', f: answer %>
+      <% end %>
+
+      <div class="links">
+        <%= link_to_add_association f, :answers do %>
+          <%= glyph 'plus' %> Add more answer
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, :class => 'btn-primary' %>
+      <%= link_to "Cancel", admin_questions_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
 <% end %>
