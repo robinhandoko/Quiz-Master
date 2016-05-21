@@ -18,3 +18,26 @@
 //= require cocoon
 //= require admin/questions
 //= require_tree .
+
+var ready = function() {
+  $(".submit-answer").click(function(e){
+    e.preventDefault();
+    counter = 0
+
+    $(".selected-answer").each(function(){
+      if($(this).is(":checked")){
+        counter += 1;
+      }
+    })
+
+    if(counter == 0){
+      alert("Please select at least one answer");
+      return false;
+    }
+
+    $("form").submit();
+  })
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

@@ -1,7 +1,47 @@
-<%= paginate @questions, :window => 1 %>
+<div class="paginate-section">
+  <%= link_to_next_page @questions, "Next Question" %>
+  <%= link_to_previous_page @questions, "Previous Question" %>
+</div>
 
 <div class="quiz-mode">
   <% @questions.each do |question, index| %>
-    Q: <%= question.question %>
+    <%= form_for question, url: submit_answer_quiz_path(question), method: "POST", remote: true do |q| %>
+      <strong>Q: <%= raw question.question %></strong>
+
+      <div class="question-info">
+        <%= render_question_info(question) %>
+      </div>
+      <dd>
+        Answers :
+      </dd>
+      <dt>
+        <% question.answers.each_with_index do |answer, index| %>
+          <ul class="quiz-mode-answer">
+            <li>
+              <% if question.question_type == 1 %>
+                <%= radio_button_tag 'selected_answer[]', answer.id, false, class: "selected-answer" %>
+              <% else %>
+                <%= check_box_tag 'selected_answer[]', answer.id, false, class: "selected-answer" %>
+              <% end %>
+              <%= answer.answer %>
+            </li>
+          </ul>
+        <% end %>
+      </dt>
+
+      <div class="action-submit">
+        <%= button_tag "Submit Answer", class: "submit-answer btn btn-primary" %>
+      </div>
+    <% end %>
   <% end %>
+</div>
+
+<hr />
+<div class="quiz-mode-result">
+  <div class="col-lg-9 result-message">
+
+  </div>
+  <div class="col-lg-3 result-icon">
+
+  </div>
 </div>

@@ -10,5 +10,9 @@ Rails.application.routes.draw do
     resources :questions
   end
 
-  resources :quiz
+  resources :quiz do
+    member do
+      post :submit_answer
+    end
+  end
 end

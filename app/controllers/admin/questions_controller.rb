@@ -2,7 +2,7 @@ class Admin::QuestionsController < AdminController
   before_action :prepare_question, only: [:show, :edit, :update, :destroy]
 
   def index
-    @questions = Question.page(params[:page] || 1)
+    @questions = Question.includes(:answers).page(params[:page] || 1)
   end
 
   def show

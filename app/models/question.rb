@@ -13,6 +13,10 @@ class Question < ActiveRecord::Base
 
   accepts_nested_attributes_for :answers, reject_if: :all_blank, allow_destroy: true
 
+  def corrent_answers
+    answers.where(is_correct: true)
+  end
+
   private
 
   def validate_answers
