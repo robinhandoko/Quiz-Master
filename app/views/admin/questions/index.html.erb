@@ -1,0 +1,54 @@
+<div class="page-header">
+  <h1>List of Question</h1>
+</div>
+<%= paginate @questions, :window => 2 %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Question</th>
+      <th>Answer</th>
+      <th>Created At</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @questions.blank? %>
+      <tr>
+        <td colspan="5"> You don't have any questions right now. Try to create a new one.</td>
+      </tr>
+    <% end %>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= link_to question.id, admin_question_path(question) %></td>
+        <td><%= raw question.question %></td>
+        <td><%= question.answer %></td>
+        <td><%=l question.created_at %></td>
+        <td>
+          <%= link_to admin_question_path(question), :class => 'btn btn-xs',
+            :title => "Show" do
+          %>
+            <%= glyph 'info-sign' %>
+          <%- end -%>
+
+          <%= link_to edit_admin_question_path(question), :class => 'btn btn-xs',
+            :title => "Edit" do
+          %>
+            <%= glyph 'edit' %>
+          <%- end -%>
+
+          <%= link_to admin_question_path(question), :class => 'btn btn-xs',
+            :method => :delete,
+            :data => { :confirm => "Are you sure want to delete this question?" },
+            :class => 'btn btn-xs',
+            :title => "Delete" do
+          %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New", new_admin_question_path, :class => 'btn btn-primary' %>
